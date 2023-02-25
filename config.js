@@ -1,4 +1,4 @@
-require( 'dotenv' ).configs()
+require( 'dotenv' ).config()
 
 const configs = {
     api: {
