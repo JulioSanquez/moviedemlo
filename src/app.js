@@ -2,6 +2,7 @@ const express = require('express')
 
 const responseHandlers = require('./utils/handleResponses')
 const db = require('./utils/database')
+const {host, port} = require( '../config' ).api
 const initModels = require('./models/initModels')
 
 const userRouter = require('./users/users.router')
@@ -39,10 +40,10 @@ app.use('*', (req, res)=> {
     responseHandlers.error({
         res,
         status: 404,
-        message: 'URL not found, please try with http://localhost:9000/',
+        message: `URL not found, please try with ${host}`,
     })
 })
 
-app.listen(9000,() => {
-    console.log('Server started at port 9000')
+app.listen(port,() => {
+    console.log(`Server started at port ${port}`)
 })
