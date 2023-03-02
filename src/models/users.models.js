@@ -19,20 +19,31 @@ const Users = db.define("users", {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
+    validate:{
+      isEmail:true,
+    }
   },
   password: {
     type: DataTypes.STRING,
     allowNull: false
   },
+  gender:{
+    type: DataTypes.STRING
+  },
+  birthday:{
+    type: DataTypes.DATE,
+    allowNull: false
+  },
   profileImage:{
     type: DataTypes.STRING
   },
-  phone: {
+  role: {
     type: DataTypes.STRING,
+    allowNull: false
   },
-  isActive: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true
+  status:{
+    type:DataTypes.STRING,
+    allowNull: false
   }
 });
 

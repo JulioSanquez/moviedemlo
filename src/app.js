@@ -3,10 +3,14 @@ const express = require('express')
 const responseHandlers = require('./utils/handleResponses')
 const db = require('./utils/database')
 const {host, port} = require( '../config' ).api
-const initModels = require('./models/initModels')
+const {initModels} = require('./models/index.models')
+const upload = require( './utils/multer' )
 
 const userRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
+const moviesRouter = require('./movies/movies.router')
+const seriesRouter = require('./series/series.router')
+const genreRouter = require('./genres/genres.router')
 
 const app = express()
 
@@ -33,8 +37,15 @@ app.get('/', (req, res) => {
     })
 })
 
-app.use('/api/v1/users', userRouter)
+app.post( '/upload', upload.single(), ( req, res) => {
+    res.status(200).json( {  } )
+} )
+
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/users', userRouter)
+app.use('/api/v1/movies', moviesRouter)
+app.use('/api/v1/series', seriesRouter)
+app.use('/api/v1/genres', genreRouter)
 
 app.use('*', (req, res)=> {
     responseHandlers.error({

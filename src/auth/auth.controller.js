@@ -1,8 +1,6 @@
 
 const { findUserByEmail } = require('../users/users.controllers')
 const { comparePassword } = require('../utils/crypto')
-//? son funciones asincronas
-//? retornan informacion
 
 const checkUserCredentials = async(email, password) => {
     try {
@@ -17,8 +15,5 @@ const checkUserCredentials = async(email, password) => {
         return false
     }
 }
-
-//? Las credenciales son exitosas -> User
-//! Las credenciales sean fallidas -> false
 
 module.exports = checkUserCredentials
