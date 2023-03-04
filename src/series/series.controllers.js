@@ -5,10 +5,10 @@ const uuid = require( 'uuid' ).v4
 const findAllSeries = async ( limit, offset ) => {
     // limit -> Cuantos quiero mostrar
     // offset -> Donde empiezo a mostrar
-    // const queryOptions = {
-    //     limit: limit || 20,
-    //     offset: offset || 0
-    // }
+    const queryOptions = {
+        limit: limit,
+        offset: offset
+    }
 
     // if( limit && offset ){
     //     queryOptions.limit = limit,

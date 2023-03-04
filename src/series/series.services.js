@@ -3,13 +3,21 @@ const { error, success } = require( '../utils/handleResponses' )
 const {addToSeriesVideoFirebase} = require( '../utils/firebase' )
 
 const getAllSeries = ( req, res ) => {
-    seriesControllers.findAllSeries()
-        .then( data => success({
-            res,
-            status: 200,
-            data,
-            message: 'Getting all series'
-        }) )
+    const limit =  Number(req.query.limit) || 10
+    const offset = Number(req.query.offset) || 0
+
+    
+    seriesControllers.findAllSeries( limit, offset )
+        .then( data =>{ 
+                const nextPageUrl = (data.count - offset) < limit ? '' : null
+                const prevPageUrl = offset - limit >= 0 ? '' : null
+                success({
+                res,
+                status: 200,
+                data,
+                message: 'Getting all series'
+            }) 
+        })
         .catch( err => error({
             res,
             data: err,
