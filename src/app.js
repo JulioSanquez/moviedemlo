@@ -32,7 +32,10 @@ app.get('/', (req, res) => {
         status: 200,
         message: 'Servidor inicializado correctamente',
         data: {
-            "users": "http://localhost:9000/api/v1/users"
+            "users": `${host}/api/v1/users`,
+            "genres": `${host}/api/v1/genres`,
+            "movies": `${host}/api/v1/movies`,
+            "series": `${host}/api/v1/series`,
         }
     })
 })
